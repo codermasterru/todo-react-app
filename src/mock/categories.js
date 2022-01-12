@@ -1,18 +1,18 @@
 const Categories = [
     {
-        id: 1,
+        id: 'work',
         name: 'Работа'
     },
     {
-        id: 2,
-        name: 'Личные'
+        id: 'privat',
+        name: 'Личное'
     },
     {
-        id: 3,
+        id: 'family',
         name: 'Семья'
     },
     {
-        id: 4,
+        id: 'rest',
         name: 'Отдых'
     }
 ]

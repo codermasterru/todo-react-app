@@ -29,3 +29,39 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.bp3-control input:focus ~ .bp3-control-indicator,
+input:focus,
+input:active,
+button:active,
+button:focus {
+  outline: none;
+}
+
+.panel-button {
+  color: #fff !important;
+  font-weight: 500;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.panel-button > span {
+  text-transform: uppercase;
+}
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.category-dot.work {
+  background-color: #f2d06c;
+}
+.category-dot.privat {
+  background-color: #8a5458;
+}
+.category-dot.family {
+  background-color: #0253b3;
+}
+.category-dot.rest {
+  background-color: #ca89fc;
+}

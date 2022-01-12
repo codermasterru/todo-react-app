@@ -35,7 +35,7 @@ export default class NewTodo extends Component {
                     </div>
                     <div>
                         <div className={styles.inputGroup}>
-                            <input placeholder='Название задачи' />
+                            <input placeholder='Название' />
                             <Button icon={'cross'} minimal />
                         </div>
                     </div>
@@ -67,7 +67,7 @@ export default class NewTodo extends Component {
                         </div>
                     </div>
                     <Button large minimal fill>
-                        ДОБАВИТЬ ЗАДАЧУ
+                        ДОБАВИТЬ ДЕЛО
                     </Button>
                 </form>
             </div>
