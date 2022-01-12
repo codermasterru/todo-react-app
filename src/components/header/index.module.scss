@@ -1,6 +1,7 @@
 @import "styles/colors.scss";
 
 .root {
+    min-height: 180px;
     height: 100%;
     display: flex;
     flex-flow: row;

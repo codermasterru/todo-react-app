@@ -3,7 +3,11 @@
 .root {
     display: flex;
     flex-flow: column;
+    // temp
+    max-width: 400px;
+    // 
 }
+ 
 .list {
     padding: 1rem;
     overflow: auto;

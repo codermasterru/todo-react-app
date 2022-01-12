@@ -1,0 +1,25 @@
+// temp
+.root {
+    margin-left: 1px;
+    min-height: 400px;
+}
+//
+
+@import "styles/colors";
+
+.todoIcon {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0 0;
+    display: flex;
+    justify-content: center;
+    > span {
+        cursor: pointer;
+    }
+    &:hover {
+        span {
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+        }
+    }
+}
