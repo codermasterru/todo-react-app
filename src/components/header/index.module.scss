@@ -1,0 +1,37 @@
+@import "styles/colors.scss";
+
+.root {
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    position: relative;
+    &:before {
+        position: absolute;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #0b0b0b26;
+    }
+    > div {
+        padding: 1rem 1.5rem 1.4rem;
+    }
+}
+.title {
+    flex: 1;
+    h1 {
+        color: #fff;
+        font-size: 2.3rem;
+        font-weight: 300;
+        margin-top: 12px;
+        margin-bottom: 17px;
+    }
+    > span {
+        font-size: 0.9rem;
+        color: $outline-color;
+        line-height: 1;
+    }
+    z-index: 1;
+}
