@@ -1,6 +1,12 @@
 import Container from 'components/container';
 import { Component } from 'react';
+import { Colors } from '@blueprintjs/core'
 import styles from './index.module.scss';
+import Todos from 'components/todos';
+import NewTodo from 'components/newTodo';
+import Summary from 'components/summary';
+import Overlay from 'components/overlay';
+import TodoAdd from 'components/todoAdd';
 
 export default class App extends Component {
 
@@ -33,13 +39,26 @@ export default class App extends Component {
         date: new Date(),
         done: false
       }
-    ]
+    ],
+    addNew: false
   }
+
+  handleClick = () => this.setState({ addNew: !this.state.addNew })
 
   render() {
     return (
-      <div className={styles.root} >
-        <Container todos={this.state.todos} />
+      <div className={styles.root} style={{ background: Colors.LIGHT_GRAY4 }}>
+        <Container
+          activeRight={this.state.addNew}
+          left={<Todos todos={this.state.todos} />}
+          right={<NewTodo />}
+          overlay={
+            <Overlay
+              left={<Summary todos={this.state.todos} />}
+              right={<TodoAdd />} />
+          }
+        />
+        <button onClick={this.handleClick}>Переключить</button>
       </div>
     );
   }

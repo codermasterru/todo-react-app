@@ -3,20 +3,17 @@
 .root {
     display: flex;
     flex-flow: column;
-    // temp
-    max-width: 400px;
-    // 
 }
- 
+
 .list {
-    padding: 1rem;
-    overflow: auto;
+    padding: 1rem 1.5rem;
+    overflow-y: scroll;
     flex: 1 0 100%;
 }
 .progress {
     display: flex;
     flex-flow: column;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     padding: 0 1rem;
     z-index: 1;

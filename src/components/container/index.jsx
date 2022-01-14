@@ -1,20 +1,20 @@
-import NewTodo from 'components/newTodo';
-import Todos from 'components/todos';
-import Summary from 'summary';
+import { Classes } from '@blueprintjs/core';
 import styles from './index.module.scss';
 
-const Container = ({ todos }) => {
+
+
+const Container = (props) => {
+    const rootClasses = [
+        styles.root,
+        Classes.ELEVATION_2,
+        props.activeRight ? 'right-active' : ''
+    ].join(' ');
+
     return (
-        <div className={styles.root}>
-            <div className={styles.tempW}>
-                <Todos todos={todos} />
-            </div>
-            <div className={styles.tempW}>
-                <NewTodo />
-            </div>
-            <div className={styles.tempW}>
-                <Summary todos={todos} />
-            </div>
+        <div className={rootClasses}>
+            <div className={styles.leftContainer}>{props.left}</div>
+            <div className={styles.rightContainer}>{props.right}</div>
+            <div className={styles.overlayContainer}>{props.overlay}</div>
         </div>
 
     )
