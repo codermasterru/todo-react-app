@@ -23,16 +23,34 @@ export default class NewTodo extends Component {
     }
 
     render() {
+        const { icon } = this.state;
+
         return (
-            <div className={styles.root}>
-                <Header title='Новое дело' subtitle='3 дела на сегодня' />
+            <div >
+                <Header
+                    title='Новое дело'
+                    subtitle='3 дела на сегодня' />
                 <div className={styles.todoIcon}>
                     <Popover2
                         minimal
                         canEscapeKeyClose
-                        content={<IconSelector />}
+                        content={
+                            <IconSelector
+                                onSelect={this.handleChange}
+                                field='icon' />}
                         position={Position.BOTTOM}>
-                        <TodoIcon icon='plus' />
+                        <TodoIcon
+                            icon={icon || 'plus'}
+                            large
+                            disabled={!icon}
+                            badge={
+                                icon && (
+                                    <Icon
+                                        icon='refresh'
+                                        size={12}
+                                        className={styles.badge} />
+                                )
+                            } />
                     </Popover2>
                 </div>
                 <form className={styles.form}>

@@ -4,7 +4,7 @@
 .todoIcon {
     width: 100%;
     text-align: center;
-    padding: 1rem 0 0;
+    padding: 1rem 0 0.5rem;
     display: flex;
     justify-content: center;
     span {
@@ -29,15 +29,15 @@
         width: 100%;
     }
 
-    input {
-        width: 100%;
-        border-radius: 5px;
-        border: none;
-        background: $outline-color;
-        height: auto;
-        padding: 12px;
-        font-size: 0.9rem;
-    }
+    // input {
+    //     width: 100%;
+    //     border-radius: 5px;
+    //     border: none;
+    //     background: $outline-color;
+    //     height: auto;
+    //     padding: 12px;
+    //     font-size: 0.9rem;
+    // }
 }
 
 .date {
@@ -115,3 +115,15 @@
 }
 
 @include categories-colors;
+
+.badge {
+    background: #8f8f8f;
+    color: #fff;
+    position: relative;
+    border-radius: inherit;
+    padding: 5px;
+    svg {
+        width: 13px;
+        height: 13px;
+    }
+}
