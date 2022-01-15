@@ -29,7 +29,7 @@ const Summary = ({ todos }) => {
                 ))}
             </div>
             <Button large minimal className='panel-button'>
-                СМОТРЕТЬ ВСЕ ДЕЛА
+                ПОСМОТРЕТЬ ДЕЛА
             </Button>
         </>
     )
