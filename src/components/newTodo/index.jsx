@@ -4,11 +4,23 @@ import TodoIcon from 'components/todoIcon';
 import IconSelector from 'components/iconSelector';
 import styles from './index.module.scss';
 import { Popover2 } from '@blueprintjs/popover2';
-import { Button, Switch, Position } from '@blueprintjs/core';
+import { Button, Switch, Position, Icon } from '@blueprintjs/core';
 import CategorySelector from './categorySelector';
 import { DatePicker } from '@blueprintjs/datetime';
+import Categories from 'mock/categories';
 
 export default class NewTodo extends Component {
+
+    state = {
+        category: '1',
+        icon: ''
+    }
+
+    handleChange = ({ target }) => {
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        this.setState({ [target.name]: value })
+        console.log(this.state)
+    }
 
     render() {
         return (
@@ -24,15 +36,27 @@ export default class NewTodo extends Component {
                     </Popover2>
                 </div>
                 <form className={styles.form}>
+
                     <div className={styles.category}>
                         <Popover2
                             minimal
                             canEscapeKeyClose
-                            content={<CategorySelector />}
+                            content={
+                                <CategorySelector
+                                    onSelect={this.handleChange}
+                                    field='category' />}
                             position={Position.BOTTOM_LEFT}>
-                            <input placeholder='Категория' readOnly />
+                            <div className={`${styles.inputGroup}
+                                ${styles[this.state.category]}`}>
+                                <input
+                                    placeholder='Категория'
+                                    readOnly
+                                    value={Categories[this.state.category]} />
+                                <Icon icon='symbol-circle' />
+                            </div>
                         </Popover2>
                     </div>
+
                     <div>
                         <div className={styles.inputGroup}>
                             <input placeholder='Название' />

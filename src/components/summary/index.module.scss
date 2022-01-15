@@ -1,12 +1,10 @@
-@import "styles/colors.scss";
+@import "styles/mixins.scss";
 
 .summary {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-    padding: 10px;
-    justify-content: space-between;
     > div {
         display: flex;
         font-size: 1.3rem;
@@ -21,21 +19,15 @@
 }
 
 .category {
-    text-align: center;
     display: flex;
     align-items: center;
 }
 
 .value {
-    color: #6c8a98;
+    color: lightgray;
     font-weight: 300;
     text-align: right;
     flex: 1;
 }
-h1 {
-    color: #fff;
-    font-size: 2.3rem;
-    font-weight: 300;
-    margin-top: 12px;
-    margin-bottom: 17px;
-}
+
+@include categories-colors;

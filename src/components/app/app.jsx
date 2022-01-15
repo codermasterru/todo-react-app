@@ -13,7 +13,7 @@ export default class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: '1',
         icon: 'highlight',
         category: 1,
         description: 'Доделать проект',
@@ -22,7 +22,7 @@ export default class App extends Component {
         done: false
       },
       {
-        id: 2,
+        id: '2',
         icon: 'walk',
         category: 2,
         description: 'Сходить к друзьям',
@@ -31,7 +31,7 @@ export default class App extends Component {
         done: false
       },
       {
-        id: 3,
+        id: '3',
         icon: 'shop',
         category: 3,
         description: "Сходить за покупками",

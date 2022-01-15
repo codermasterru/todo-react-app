@@ -1,7 +1,7 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 import Categories from 'mock/categories'
+import { Button, Icon } from '@blueprintjs/core'
 
 const Summary = ({ todos }) => {
     const countByCategory = categoryId => {
@@ -9,7 +9,7 @@ const Summary = ({ todos }) => {
     }
 
     return (
-        <React.Fragment>
+        <>
             <h1>Мои дела</h1>
             <div className={styles.summary}>
                 <div>
@@ -18,17 +18,20 @@ const Summary = ({ todos }) => {
                         {todos.filter(todo => !todo.done).length}
                     </div>
                 </div>
-                {Categories.map(category => (
-                    <div key={category.id}>
-                        <div className={styles.label}>{category.name}</div>
-                        <div className={styles.category}>
-                            <div className={`category-dot ${category.id}`} />
+                {Object.keys(Categories).map(key => (
+                    <div key={key}>
+                        <div className={styles.label}>{Categories[key]}</div>
+                        <div className={`${styles.category} ${styles[key]}`}>
+                            <Icon icon='symbol-circle' />
                         </div>
-                        <div className={styles.value}>{countByCategory(category.id)}</div>
+                        <div className={styles.value}>{countByCategory(key)}</div>
                     </div>
                 ))}
             </div>
-        </React.Fragment>
+            <Button large minimal className='panel-button'>
+                СМОТРЕТЬ ВСЕ ДЕЛА
+            </Button>
+        </>
     )
 }
 
