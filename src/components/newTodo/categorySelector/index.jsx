@@ -6,7 +6,6 @@ import styles from './index.module.scss';
 const CategorySelector = ({ field, onSelect }) => {
 
   const handleChange = (e) => {
-    console.log(e.target.name)
     onSelect({
       target: {
         value: e.target.name,
