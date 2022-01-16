@@ -10,6 +10,7 @@ import { DateInput, TimePrecision } from '@blueprintjs/datetime';
 import Categories from 'mock/categories';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import InputGroup from 'components/inputGroup';
 
 export default class NewTodo extends Component {
 
@@ -35,8 +36,10 @@ export default class NewTodo extends Component {
         if (isUserChange) this.setState({ date: date })
     }
 
+    handleClear = field => this.setState({ [field]: '' })
+
     render() {
-        const { icon, description, location, date } = this.state;
+        const { icon, description, location, date, category } = this.state;
         const canSave = description && location && date && icon;
 
         return (
@@ -75,37 +78,32 @@ export default class NewTodo extends Component {
                                     onSelect={this.handleChange}
                                     field='category' />}
                             position={Position.BOTTOM_LEFT}>
-                            <div className={`${styles.inputGroup}
-                                ${styles[this.state.category]}`}>
-                                <input
-                                    placeholder='Категория'
-                                    readOnly
-                                    value={Categories[this.state.category]} />
+                            <InputGroup
+                                className={styles[category]}
+                                value={Categories[category]}
+                                canClear={false}
+                                readOnly>
                                 <Icon icon='symbol-circle' />
-                            </div>
+                            </InputGroup>
                         </Popover2>
                     </div>
 
                     <div>
-                        <div className={styles.inputGroup}>
-                            <input
-                                name='description'
-                                placeholder='Название'
-                                value={description}
-                                onChange={this.handleChange}
-                            />
-                            {description && <Button icon={'cross'} minimal />}
-                        </div>
+                        <InputGroup
+                            name='description'
+                            placeholder='Название'
+                            value={description}
+                            onChange={this.handleChange}
+                            onClear={this.handleClear} />
                     </div>
                     <div>
-                        <div className={styles.inputGroup}>
-                            <input
-                                name='location'
-                                placeholder='Где?'
-                                value={location}
-                                onChange={this.handleChange} />
-                            {location && <Button icon={'cross'} minimal />}
-                        </div>
+                        <InputGroup
+                            name='location'
+                            placeholder='Где?'
+                            value={location}
+                            autoComplete='off'
+                            onChange={this.handleChange}
+                            onClear={this.handleClear} />
                     </div>
                     <div className={styles.date}>
                         <div>
