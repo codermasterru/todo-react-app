@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import TodoIcon from 'components/todoIcon'
-import { formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { Button } from '@blueprintjs/core';
 
@@ -14,7 +14,7 @@ const Todo = ({ todo }) => {
             </div>
             <div className={styles.details}>
                 <span className={styles.date}>
-                    {formatDistanceToNow(todo.date, { addSuffix: true, locale: ru })}
+                    {format(todo.date, 'PP', { addSuffix: true, locale: ru })}
                 </span>
                 <div className={styles.actions}>
                     <Button icon='tick' minimal />

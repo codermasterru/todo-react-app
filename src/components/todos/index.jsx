@@ -1,4 +1,4 @@
-import { Spinner } from '@blueprintjs/core';
+import { AnchorButton, Button, ButtonGroup, Spinner } from '@blueprintjs/core';
 import Header from 'components/header';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
@@ -20,6 +20,22 @@ const Todos = ({ todos }) => {
                 subtitle={format(new Date(), 'Pp', { locale: ru })}
                 action={progress} />
             <div className={styles.list}>
+                <div className={styles.toolbar}>
+                    <div className={styles.filter}>
+                        <AnchorButton>
+                            Сегодня
+                        </AnchorButton>
+                    </div>
+                    <div className={styles.actions}>
+                        <ButtonGroup>
+                            <AnchorButton>
+                                Все
+                            </AnchorButton>
+                            <Button icon='tick' />
+                            <Button icon='trash' />
+                        </ButtonGroup>
+                    </div>
+                </div>
                 {todos.map(todo => (
                     <Todo key={todo.id} todo={todo} />
                 ))}

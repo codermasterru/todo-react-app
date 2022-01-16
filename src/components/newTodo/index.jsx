@@ -63,7 +63,7 @@ export default class NewTodo extends Component {
                             badge={
                                 icon && (
                                     <Icon
-                                        icon='refresh'
+                                        icon='edit'
                                         size={12}
                                         className={styles.badge} />)} />
                     </Popover2>
