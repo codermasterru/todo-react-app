@@ -10,27 +10,7 @@
     padding: 1rem 1.5rem;
     overflow: auto;
 }
-.progress {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 1rem;
-    z-index: 1;
-    > span {
-        color: $outline-color;
-        font-size: 0.85rem;
-        margin-top: 12px;
-    }
-    svg {
-        :global(.bp3-spinner-track) {
-            stroke: rgba($primary-color, 0.2);
-        }
-        :global(.bp3-spinner-head) {
-            stroke: rgba($primary-color, 0.8);
-        }
-    }
-}
+
 
 .toolbar {
     display: flex;

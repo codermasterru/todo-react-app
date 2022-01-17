@@ -1,4 +1,4 @@
-import { AnchorButton, Button, ButtonGroup, Position, Spinner } from '@blueprintjs/core';
+import { AnchorButton, Button, ButtonGroup, Position } from '@blueprintjs/core';
 import { Popover2 } from '@blueprintjs/popover2';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
@@ -7,6 +7,7 @@ import Header from 'components/header';
 import Todo from './todo';
 import StatusSelector from './statusSellector';
 import styles from './index.module.scss';
+import Progress from 'components/progress';
 
 export default class Todos extends Component {
 
@@ -23,23 +24,13 @@ export default class Todos extends Component {
     }
 
     render() {
-        const completed = this.props.todos.filter(t => t.done).length
-        const percentage = completed
-            ? parseFloat(completed / this.props.todos.length).toFixed(2)
-            : 0
 
-        const progress = (
-            <div className={styles.progress}>
-                <Spinner size={55} value={percentage} />
-                <span>{percentage * 100}% выполнено</span>
-            </div>
-        )
         return (
             <div className={styles.root}>
                 <Header
                     title={'Моё расписание'}
                     subtitle={format(new Date(), 'Pp', { locale: ru })}
-                    action={progress} />
+                    action={<Progress todos={this.props.todos} />} />
 
                 <div className={`${styles.toolbar} 
                 ${this.state.scrolled ? styles.scrolled : ''}`}>
