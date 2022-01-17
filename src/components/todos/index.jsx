@@ -1,49 +1,85 @@
-import { AnchorButton, Button, ButtonGroup, Spinner } from '@blueprintjs/core';
-import Header from 'components/header';
+import { AnchorButton, Button, ButtonGroup, Position, Spinner } from '@blueprintjs/core';
+import { Popover2 } from '@blueprintjs/popover2';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import styles from './index.module.scss';
+import { Component } from 'react';
+import Header from 'components/header';
 import Todo from './todo';
+import StatusSelector from './statusSellector';
+import styles from './index.module.scss';
 
-const Todos = ({ todos }) => {
-    const progress = (
-        <div className={styles.progress}>
-            <Spinner size={45} value={0.7} />
-            <span>70%</span>
-        </div>
-    )
+export default class Todos extends Component {
 
-    return (
-        <div className={styles.root}>
-            <Header
-                title={'Моё расписание'}
-                subtitle={format(new Date(), 'Pp', { locale: ru })}
-                action={progress} />
-            <div className={styles.list}>
-                <div className={styles.toolbar}>
+    state = {
+        scrolled: false,
+        show: 'Все'
+    }
+
+    handleStatusFilterChange = status => this.setState({ show: status })
+
+    handleScroll = e => {
+        if (e.target.scrollTop > 10) this.setState({ scrolled: true })
+        else this.setState({ scrolled: false })
+    }
+
+    render() {
+        const completed = this.props.todos.filter(t => t.done).length
+        const percentage = completed
+            ? parseFloat(completed / this.props.todos.length).toFixed(2)
+            : 0
+
+        const progress = (
+            <div className={styles.progress}>
+                <Spinner size={55} value={percentage} />
+                <span>{percentage * 100}% выполнено</span>
+            </div>
+        )
+        return (
+            <div className={styles.root}>
+                <Header
+                    title={'Моё расписание'}
+                    subtitle={format(new Date(), 'Pp', { locale: ru })}
+                    action={progress} />
+
+                <div className={`${styles.toolbar} 
+                ${this.state.scrolled ? styles.scrolled : ''}`}>
                     <div className={styles.filter}>
-                        <AnchorButton>
-                            Сегодня
-                        </AnchorButton>
+                        <ButtonGroup minimal>
+                            <Popover2 position={Position.BOTTOM_LEFT} minimal>
+                                <AnchorButton rightIcon='caret-down' icon='calendar'>
+                                    Завтра
+                                </AnchorButton>
+                            </Popover2>
+                            <Popover2
+                                content={
+                                    <StatusSelector onselect={this.handleStatusFilterChange} />
+                                }
+                                position={Position.BOTTOM_LEFT}
+                                minimal>
+                                <AnchorButton rightIcon='caret-down' icon='eye-open'>
+                                    {this.state.show}
+                                </AnchorButton>
+                            </Popover2>
+                        </ButtonGroup>
+
                     </div>
                     <div className={styles.actions}>
-                        <ButtonGroup>
-                            <AnchorButton>
-                                Все
-                            </AnchorButton>
+                        <ButtonGroup minimal>
                             <Button icon='tick' />
                             <Button icon='trash' />
                         </ButtonGroup>
                     </div>
                 </div>
-                {todos.map(todo => (
-                    <Todo key={todo.id} todo={todo} />
-                ))}
+                <div className={styles.list} onScroll={this.handleScroll}>
+                    {this.props.todos.map(todo => (
+                        <Todo key={todo.id} todo={todo} />
+                    ))}
+                </div>
+
             </div>
 
-        </div>
+        )
+    }
 
-    )
+
 }
-
-export default Todos;

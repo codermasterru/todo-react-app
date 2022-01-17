@@ -19,7 +19,7 @@ export default class App extends Component {
         description: 'Доделать проект',
         location: 'Офис',
         date: new Date(),
-        done: false
+        done: true
       },
       {
         id: 2,
@@ -38,6 +38,24 @@ export default class App extends Component {
         location: 'Гипермаркет Глобус',
         date: new Date(),
         done: false
+      },
+      {
+        id: 4,
+        icon: 'calculator',
+        category: '1',
+        description: "Посчитать смету",
+        location: 'Офис',
+        date: new Date(),
+        done: false
+      },
+      {
+        id: 5,
+        icon: 'envelope',
+        category: '2',
+        description: "Отправить письмо бабушке",
+        location: 'Дом',
+        date: new Date(),
+        done: true
       }
     ],
     addNew: false

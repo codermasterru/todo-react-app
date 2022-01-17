@@ -6,8 +6,8 @@ import { Button } from '@blueprintjs/core';
 
 const Todo = ({ todo }) => {
     return (
-        <div className={styles.root}>
-            <TodoIcon icon={todo.icon} />
+        <div className={`${styles.root} ${todo.done ? styles.done : ''}`}>
+            <TodoIcon icon={todo.icon} disabled={todo.done} />
             <div className={styles.content}>
                 <div className={styles.title}>{todo.description}</div>
                 <div className={styles.subtitle}>{todo.location}</div>
@@ -17,6 +17,7 @@ const Todo = ({ todo }) => {
                     {format(todo.date, 'PP', { addSuffix: true, locale: ru })}
                 </span>
                 <div className={styles.actions}>
+                    {!todo.done && <Button icon={'tick'} minimal />}
                     <Button icon='tick' minimal />
                 </div>
             </div>
