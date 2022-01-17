@@ -12,7 +12,8 @@ export default class Todos extends Component {
 
     state = {
         scrolled: false,
-        show: 'Все'
+        show: 'Все',
+        date: new Date()
     }
 
     handleStatusFilterChange = status => this.setState({ show: status })
@@ -23,7 +24,12 @@ export default class Todos extends Component {
     }
 
     render() {
-
+        const todos =
+            this.state.show === 'All'
+                ? this.props.todos
+                : this.props.todos.filter(todo =>
+                    this.state.show === 'Done' ? todo.done : !todo.done
+                )
         return (
             <div className={styles.root}>
                 <Header
@@ -34,10 +40,10 @@ export default class Todos extends Component {
                     scrolled={this.state.scrolled}
                     onStatusFilterChange={this.handleStatusFilterChange}
                     show={this.state.show}
-                    todos = {this.state.todos}
+                    todos={this.props.todos}
                 />
                 <div className={styles.list} onScroll={this.handleScroll}>
-                    {this.props.todos.map(todo => (
+                    {todos.map(todo => (
                         <Todo key={todo.id} todo={todo} />
                     ))}
                 </div>

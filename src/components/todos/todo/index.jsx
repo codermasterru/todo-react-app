@@ -18,7 +18,7 @@ const Todo = ({ todo }) => {
                 </span>
                 <div className={styles.actions}>
                     {!todo.done && <Button icon={'tick'} minimal />}
-                    <Button icon='tick' minimal />
+                    <Button icon='trash' minimal />
                 </div>
             </div>
         </div>

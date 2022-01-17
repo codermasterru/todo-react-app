@@ -19,7 +19,7 @@ export default class App extends Component {
         description: 'Доделать проект',
         location: 'Офис',
         date: new Date(),
-        done: true
+        done: false
       },
       {
         id: 2,
@@ -55,7 +55,7 @@ export default class App extends Component {
         description: "Отправить письмо бабушке",
         location: 'Дом',
         date: new Date(),
-        done: true
+        done: false
       }
     ],
     addNew: false

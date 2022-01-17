@@ -3,17 +3,20 @@ import { Popover2 } from '@blueprintjs/popover2';
 import StatusSelector from './statusSellector';
 
 import styles from './index.module.scss';
+import DateSelector from './dateSelector';
 
 const Toolbar = (props) => {
-
     return (
         <div className={`${styles.toolbar} 
         ${props.scrolled ? styles.scrolled : ''}`}>
             <div className={styles.filter}>
                 <ButtonGroup minimal>
-                    <Popover2 position={Position.BOTTOM_LEFT} minimal>
+                    <Popover2
+                        content={<DateSelector todos={props.todos} />}
+                        position={Position.BOTTOM_LEFT}
+                        minimal>
                         <AnchorButton rightIcon='caret-down' icon='calendar'>
-                            Завтра
+                            Сегодня
                         </AnchorButton>
                     </Popover2>
                     <Popover2
