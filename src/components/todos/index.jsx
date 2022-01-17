@@ -1,13 +1,12 @@
-import { AnchorButton, Button, ButtonGroup, Position } from '@blueprintjs/core';
-import { Popover2 } from '@blueprintjs/popover2';
+
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { Component } from 'react';
 import Header from 'components/header';
 import Todo from './todo';
-import StatusSelector from './statusSellector';
 import styles from './index.module.scss';
 import Progress from 'components/progress';
+import Toolbar from './toolbar';
 
 export default class Todos extends Component {
 
@@ -31,36 +30,12 @@ export default class Todos extends Component {
                     title={'Моё расписание'}
                     subtitle={format(new Date(), 'Pp', { locale: ru })}
                     action={<Progress todos={this.props.todos} />} />
-
-                <div className={`${styles.toolbar} 
-                ${this.state.scrolled ? styles.scrolled : ''}`}>
-                    <div className={styles.filter}>
-                        <ButtonGroup minimal>
-                            <Popover2 position={Position.BOTTOM_LEFT} minimal>
-                                <AnchorButton rightIcon='caret-down' icon='calendar'>
-                                    Завтра
-                                </AnchorButton>
-                            </Popover2>
-                            <Popover2
-                                content={
-                                    <StatusSelector onselect={this.handleStatusFilterChange} />
-                                }
-                                position={Position.BOTTOM_LEFT}
-                                minimal>
-                                <AnchorButton rightIcon='caret-down' icon='eye-open'>
-                                    {this.state.show}
-                                </AnchorButton>
-                            </Popover2>
-                        </ButtonGroup>
-
-                    </div>
-                    <div className={styles.actions}>
-                        <ButtonGroup minimal>
-                            <Button icon='tick' />
-                            <Button icon='trash' />
-                        </ButtonGroup>
-                    </div>
-                </div>
+                <Toolbar
+                    scrolled={this.state.scrolled}
+                    onStatusFilterChange={this.handleStatusFilterChange}
+                    show={this.state.show}
+                    todos = {this.state.todos}
+                />
                 <div className={styles.list} onScroll={this.handleScroll}>
                     {this.props.todos.map(todo => (
                         <Todo key={todo.id} todo={todo} />
