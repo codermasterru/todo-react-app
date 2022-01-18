@@ -1,12 +1,12 @@
-import Container from 'components/container';
+import Container from 'components/layout/Container';
 import { Component } from 'react';
 import { Colors } from '@blueprintjs/core'
 import styles from './index.module.scss';
 import Todos from 'components/todos';
-import NewTodo from 'components/newTodo';
+import TodoForm from 'components/TodoForm';
 import Summary from 'components/summary';
-import Overlay from 'components/overlay';
-import TodoAdd from 'components/todoAdd';
+import Overlay from 'components/layout/Overlay';
+import TodoAdd from 'components/TodoAdd';
 
 export default class App extends Component {
 
@@ -69,7 +69,7 @@ export default class App extends Component {
         <Container
           activeRight={this.state.addNew}
           left={<Todos todos={this.state.todos} />}
-          right={<NewTodo />}
+          right={<TodoForm />}
           overlay={
             <Overlay
               left={<Summary todos={this.state.todos} />}

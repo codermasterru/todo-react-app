@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Icon } from '@blueprintjs/core';
 import styles from './index.module.scss';
 
-const TodoIcon = ({ icon, large, disabled, badge }) => {
+const Avatar = ({ icon, large, disabled, badge }) => {
     return (
         <div
             className={`${styles.root} ${large ? styles.large : ''} ${disabled ? styles.disabled : ''
@@ -34,16 +34,16 @@ const TodoIcon = ({ icon, large, disabled, badge }) => {
     )
 }
 
-TodoIcon.defaultProps = {
+Avatar.defaultProps = {
     large: false,
     disabled: false,
     badge: null
 }
 
-TodoIcon.propTypes = {
+Avatar.propTypes = {
     icon: PropTypes.string.isRequired,
     large: PropTypes.bool,
     disabled: PropTypes.bool,
     badge: PropTypes.node
 }
-export default TodoIcon;
+export default Avatar;

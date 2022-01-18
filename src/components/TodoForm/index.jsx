@@ -1,18 +1,18 @@
 import { Component } from 'react';
-import Header from 'components/header';
-import TodoIcon from 'components/todoIcon';
-import IconSelector from 'components/iconSelector';
+import Header from 'components/layout/Header';
+import Avatar from 'components/shared/Avatar';
+import AvatarSelector from 'components/TodoForm/AvatarSelector';
 import styles from './index.module.scss';
 import { Popover2 } from '@blueprintjs/popover2';
 import { Button, Switch, Position, Icon } from '@blueprintjs/core';
-import CategorySelector from './categorySelector';
+import CategorySelector from './CategorySelector';
 import { DateInput, TimePrecision } from '@blueprintjs/datetime';
 import Categories from 'mock/categories';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import InputGroup from 'components/inputGroup';
+import InputGroup from 'components/shared/InputGroup';
 
-export default class NewTodo extends Component {
+export default class TodoForm extends Component {
 
     state = {
         category: '1',
@@ -52,11 +52,11 @@ export default class NewTodo extends Component {
                         minimal
                         canEscapeKeyClose
                         content={
-                            <IconSelector
+                            <AvatarSelector
                                 onSelect={this.handleChange}
                                 field='icon' />}
                         position={Position.BOTTOM}>
-                        <TodoIcon
+                        <Avatar
                             icon={icon || 'plus'}
                             large
                             disabled={!icon}
