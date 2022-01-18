@@ -1,10 +1,10 @@
-import styles from './index.module.scss';
-import Avatar from 'components/shared/Avatar'
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { Button } from '@blueprintjs/core';
+import Avatar from 'components/UI/Avatar'
+import styles from './index.module.scss';
 
-const Todo = ({ todo }) => {
+const TodoListItem = ({ todo }) => {
     return (
         <div className={`${styles.root} ${todo.done ? styles.done : ''}`}>
             <Avatar icon={todo.icon} disabled={todo.done} />
@@ -26,4 +26,4 @@ const Todo = ({ todo }) => {
     )
 }
 
-export default Todo;
+export default TodoListItem;

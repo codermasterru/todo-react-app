@@ -1,12 +1,11 @@
-
+import { Component } from 'react';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { Component } from 'react';
+
 import Header from 'components/layout/Header';
-import Todo from './todo';
+import { Progress, Toolbar, TodoList } from 'components/Todo';
+
 import styles from './index.module.scss';
-import Progress from 'components/todos/Progress';
-import Toolbar from './toolbar';
 
 export default class Todos extends Component {
 
@@ -42,11 +41,7 @@ export default class Todos extends Component {
                     show={this.state.show}
                     todos={this.props.todos}
                 />
-                <div className={styles.list} onScroll={this.handleScroll}>
-                    {todos.map(todo => (
-                        <Todo key={todo.id} todo={todo} />
-                    ))}
-                </div>
+                <TodoList todos={todos} onScroll={this.handleScroll} />
 
             </div>
 

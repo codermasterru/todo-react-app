@@ -1,12 +1,8 @@
-import Container from 'components/layout/Container';
 import { Component } from 'react';
-import { Colors } from '@blueprintjs/core'
 import styles from './index.module.scss';
-import Todos from 'components/todos';
-import TodoForm from 'components/TodoForm';
-import Summary from 'components/summary';
-import Overlay from 'components/layout/Overlay';
-import TodoAdd from 'components/TodoAdd';
+import { ContentLayout, Overlay } from 'components/layout';
+import { TodoAdd, TodoForm, Summary } from 'components/Todo';
+import Todos from 'containers/Todos';
 
 export default class App extends Component {
 
@@ -65,8 +61,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={styles.root} style={{ background: Colors.LIGHT_GRAY4 }}>
-        <Container
+      <div className={styles.root}>
+        <ContentLayout
           activeRight={this.state.addNew}
           left={<Todos todos={this.state.todos} />}
           right={<TodoForm />}

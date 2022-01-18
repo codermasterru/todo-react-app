@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 
 
 
-const Container = (props) => {
+const ContentLayout = (props) => {
     const rootClasses = [
         styles.root,
         Classes.ELEVATION_2,
@@ -20,4 +20,4 @@ const Container = (props) => {
     )
 }
 
-export default Container;
+export default ContentLayout;

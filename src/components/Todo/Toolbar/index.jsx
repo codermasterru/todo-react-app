@@ -1,9 +1,9 @@
 import { AnchorButton, Button, ButtonGroup, Position } from '@blueprintjs/core';
 import { Popover2 } from '@blueprintjs/popover2';
-import StatusSelector from './statusSellector';
+import StatusSelector from './StatusSellector';
 
 import styles from './index.module.scss';
-import DateSelector from './dateSelector';
+import DateSelector from './DateSelector';
 
 const Toolbar = (props) => {
     return (
