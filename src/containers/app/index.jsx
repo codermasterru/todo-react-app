@@ -1,8 +1,7 @@
+import Todos from 'containers/Todos';
 import { Component } from 'react';
 import styles from './index.module.scss';
-import { ContentLayout, Overlay } from 'components/layout';
-import { TodoAdd, TodoForm, Summary } from 'components/Todo';
-import Todos from 'containers/Todos';
+
 
 export default class App extends Component {
 
@@ -62,17 +61,8 @@ export default class App extends Component {
   render() {
     return (
       <div className={styles.root}>
-        <ContentLayout
-          activeRight={this.state.addNew}
-          left={<Todos todos={this.state.todos} />}
-          right={<TodoForm />}
-          overlay={
-            <Overlay
-              left={<Summary todos={this.state.todos} />}
-              right={<TodoAdd />} />
-          }
-        />
-        <button onClick={this.handleClick}>Переключить</button>
+        {/* temp */}
+        <Todos state={this.state} handleClick={this.handleClick}/>
       </div>
     );
   }

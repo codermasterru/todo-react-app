@@ -5,7 +5,6 @@ import { DateInput, TimePrecision } from '@blueprintjs/datetime';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
-import Header from 'components/layout/Header';
 import { Avatar, InputGroup } from 'components/UI';
 import AvatarSelector from 'components/Todo/TodoForm/AvatarSelector';
 import CategorySelector from 'components/Todo/TodoForm/CategorySelector';
@@ -16,7 +15,7 @@ import styles from './index.module.scss';
 export default class TodoForm extends Component {
 
     state = {
-        category: '1',
+        category: 1,
         icon: '',
         description: '',
         location: '',
@@ -44,10 +43,7 @@ export default class TodoForm extends Component {
         const canSave = description && location && date && icon;
 
         return (
-            <div >
-                <Header
-                    title='Новое дело'
-                    subtitle='3 дела на сегодня' />
+            <form className={styles.form}>
                 <div className={styles.todoIcon}>
                     <Popover2
                         minimal
@@ -69,84 +65,81 @@ export default class TodoForm extends Component {
                                         className={styles.badge} />)} />
                     </Popover2>
                 </div>
-                <form className={styles.form}>
-                    <div className={styles.category}>
-                        <Popover2
-                            minimal
-                            canEscapeKeyClose
-                            content={
-                                <CategorySelector
-                                    onSelect={this.handleChange}
-                                    field='category' />}
-                            position={Position.BOTTOM_LEFT}>
-                            <InputGroup
-                                className={styles[category]}
-                                value={Categories[category]}
-                                canClear={false}
-                                readOnly>
-                                <Icon icon='symbol-circle' />
-                            </InputGroup>
-                        </Popover2>
-                    </div>
-
-                    <div>
-                        <InputGroup
-                            name='description'
-                            placeholder='Название'
-                            value={description}
-                            onChange={this.handleChange}
-                            onClear={this.handleClear} />
-                    </div>
-                    <div>
-                        <InputGroup
-                            name='location'
-                            placeholder='Где?'
-                            value={location}
-                            autoComplete='off'
-                            onChange={this.handleChange}
-                            onClear={this.handleClear} />
-                    </div>
-                    <div className={styles.date}>
-                        <div>
-                            <DateInput
-                                closeOnSelection={this.state.isAllDay}
-                                placeholder='Когда'
-                                minDate={this.state.mimDate}
-                                inputProps={{ readOnly: true }}
-                                formatDate={this.formatDate}
-                                parseDate={str => new Date(str)}
-                                timePrecision={
-                                    this.state.isAllDay ? undefined : TimePrecision.MINUTE
-                                }
-                                timePickerProps={
-                                    this.state.isAllDay
-                                        ? undefined
-                                        : { minTime: this.state.minTime }}
-                                popoverProps={{ position: Position.TOP }}
-                                onChange={this.handleDateChange}
-                                value={date}
-                            />
-                        </div>
-                        <div className={styles.allDay}>
-                            <Switch
-                                label='Все дни'
-                                checked={this.state.isAllDay}
-                                name='isAllDay'
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div>
-                    <label className={styles.hint}>* Обязательное поле</label>
-                    <Button
-                        large
+                <div className={styles.category}>
+                    <Popover2
                         minimal
-                        fill
-                        className={styles.saveButton}
-                        disabled={!canSave}>
-                        ДОБАВИТЬ ДЕЛО
-                    </Button>
-                </form>
-            </div>
+                        canEscapeKeyClose
+                        content={
+                            <CategorySelector
+                                onSelect={this.handleChange}
+                                field='category' />}
+                        position={Position.BOTTOM_LEFT}>
+                        <InputGroup
+                            className={styles[category]}
+                            value={Categories[category]}
+                            canClear={false}
+                            readOnly>
+                            <Icon icon='symbol-circle' />
+                        </InputGroup>
+                    </Popover2>
+                </div>
+                <div>
+                    <InputGroup
+                        name='description'
+                        placeholder='Название'
+                        value={description}
+                        onChange={this.handleChange}
+                        onClear={this.handleClear} />
+                </div>
+                <div>
+                    <InputGroup
+                        name='location'
+                        placeholder='Где?'
+                        value={location}
+                        autoComplete='off'
+                        onChange={this.handleChange}
+                        onClear={this.handleClear} />
+                </div>
+                <div className={styles.date}>
+                    <div>
+                        <DateInput
+                            closeOnSelection={this.state.isAllDay}
+                            placeholder='Когда'
+                            minDate={this.state.mimDate}
+                            inputProps={{ readOnly: true }}
+                            formatDate={this.formatDate}
+                            parseDate={str => new Date(str)}
+                            timePrecision={
+                                this.state.isAllDay ? undefined : TimePrecision.MINUTE
+                            }
+                            timePickerProps={
+                                this.state.isAllDay
+                                    ? undefined
+                                    : { minTime: this.state.minTime }}
+                            popoverProps={{ position: Position.TOP }}
+                            onChange={this.handleDateChange}
+                            value={date}
+                        />
+                    </div>
+                    <div className={styles.allDay}>
+                        <Switch
+                            label='Все дни'
+                            checked={this.state.isAllDay}
+                            name='isAllDay'
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                </div>
+                <label className={styles.hint}>* Обязательное поле</label>
+                <Button
+                    large
+                    minimal
+                    fill
+                    className={styles.saveButton}
+                    disabled={!canSave}>
+                    ДОБАВИТЬ ДЕЛО
+                </Button>
+            </form>
         )
     }
 }
