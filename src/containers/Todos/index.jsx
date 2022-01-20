@@ -1,30 +1,41 @@
 import { ContentLayout, Overlay } from 'components/layout';
 import { TodoAdd, Summary } from 'components/Todo';
-import TodoAll from 'containers/Todos/All';
+import TodosAll from 'containers/Todos/All';
 import { Component } from "react"
-import TodoNew from './New';
+import { connect } from 'react-redux';
 
-export default class Todos extends Component {
+import { toggleView } from 'store/actions/root';
+import { rootSelector } from 'store/selectors';
+import TodosNew from './New';
+
+const mapStateToProps = state => rootSelector(state);
+
+const mapDispathToProps = dispath => ({
+    changeView: () => dispath(toggleView())
+})
+
+export class Todos extends Component {
 
     render() {
         return (
-            <>
-                <ContentLayout
-                    activeRight={this.props.state.addNew}
-                    left={<TodoAll todos={this.props.state.todos} />}
-                    right={<TodoNew />}
-                    overlay={
-                        <Overlay
-                            left={<Summary todos={this.props.state.todos} />}
-                            right={<TodoAdd />} />
-                    }
-                />
-                <button onClick={this.props.handleClick}>Переключить</button>
-            </>
-
+            <ContentLayout
+                activeRight={!this.props.viewAll}
+                left={<TodosAll />}
+                right={<TodosNew />}
+                overlay={
+                    <Overlay
+                        left={<Summary todos={[]} toggleView={this.props.changeView} />}
+                        right={<TodoAdd toggleView={this.props.changeView} />} />
+                }
+            />
         )
     }
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispathToProps
+)(Todos)
 
 
 

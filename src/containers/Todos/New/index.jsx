@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Header } from 'components/layout'
 import { TodoForm } from 'components/Todo'
 
-class TodoNew extends Component {
+class TodosNew extends Component {
 
 
     render() {
@@ -16,4 +16,4 @@ class TodoNew extends Component {
     }
 }
 
-export default TodoNew
+export default TodosNew

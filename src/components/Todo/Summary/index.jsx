@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import Categories from 'mock/categories'
 import { Button, Icon } from '@blueprintjs/core'
 
-const Summary = ({ todos }) => {
+const Summary = ({ todos, toggleView }) => {
     const countByCategory = categoryId => {
         return todos.filter(todo => todo.category === categoryId).length
     }
@@ -28,7 +28,7 @@ const Summary = ({ todos }) => {
                     </div>
                 ))}
             </div>
-            <Button large minimal className='panel-button'>
+            <Button large minimal className='panel-button' onClick={toggleView}>
                 ПОСМОТРЕТЬ ДЕЛА
             </Button>
         </>

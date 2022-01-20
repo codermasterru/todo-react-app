@@ -3,7 +3,6 @@ import { Spinner } from '@blueprintjs/core';
 import styles from './index.module.scss';
 
 const Progress = ({ todos }) => {
-
     const completed = todos.filter(t => t.done).length
     const percentage = completed
         ? parseFloat(completed / todos.length).toFixed(2)

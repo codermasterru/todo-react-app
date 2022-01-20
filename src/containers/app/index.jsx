@@ -61,8 +61,7 @@ export default class App extends Component {
   render() {
     return (
       <div className={styles.root}>
-        {/* temp */}
-        <Todos state={this.state} handleClick={this.handleClick}/>
+        <Todos />
       </div>
     );
   }

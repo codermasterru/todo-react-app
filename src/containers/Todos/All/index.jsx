@@ -6,8 +6,15 @@ import Header from 'components/layout/Header';
 import { Progress, Toolbar, TodoList } from 'components/Todo';
 
 import styles from './index.module.scss';
+import { todoSelector } from 'store/selectors';
+import { connect } from 'react-redux';
 
-export default class TodoAll extends Component {
+const mapStateToProps = state => todoSelector(state)
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export class TodosAll extends Component {
 
     state = {
         scrolled: false,
@@ -23,12 +30,7 @@ export default class TodoAll extends Component {
     }
 
     render() {
-        const todos =
-            this.state.show === 'All'
-                ? this.props.todos
-                : this.props.todos.filter(todo =>
-                    this.state.show === 'Done' ? todo.done : !todo.done
-                )
+        const { todos } = this.props
         return (
             <div className={styles.root}>
                 <Header
@@ -36,10 +38,10 @@ export default class TodoAll extends Component {
                     subtitle={format(new Date(), 'Pp', { locale: ru })}
                     action={<Progress todos={this.props.todos} />} />
                 <Toolbar
+                    todos={this.props.todos}
+                    show={this.state.show}
                     scrolled={this.state.scrolled}
                     onStatusFilterChange={this.handleStatusFilterChange}
-                    show={this.state.show}
-                    todos={this.props.todos}
                 />
                 <TodoList todos={todos} onScroll={this.handleScroll} />
 
@@ -47,6 +49,9 @@ export default class TodoAll extends Component {
 
         )
     }
-
-
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodosAll)
