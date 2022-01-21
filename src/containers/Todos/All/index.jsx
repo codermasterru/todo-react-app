@@ -6,12 +6,15 @@ import Header from 'components/layout/Header';
 import { Progress, Toolbar, TodoList } from 'components/Todo';
 
 import styles from './index.module.scss';
-import { todoSelector } from 'store/selectors';
+import { todoListSelector } from 'store/selectors';
 import { connect } from 'react-redux';
+import { deleteTodo, toggleTodoStatus } from 'store/actions/todo';
 
-const mapStateToProps = state => todoSelector(state)
+const mapStateToProps = state => todoListSelector(state)
+
 const mapDispatchToProps = dispatch => ({
-
+    deleteTodo: id => dispatch(deleteTodo(id)),
+    toggleTodoStatus: id => dispatch(toggleTodoStatus(id))
 })
 
 export class TodosAll extends Component {
@@ -30,6 +33,16 @@ export class TodosAll extends Component {
     }
 
     render() {
+        const toolbarProps = {}
+        const listProps = {}
+
+            ; ({
+                statusFilter: toolbarProps.statusFilter,
+                dateFilter: toolbarProps.dateFilter,
+                toggleTodoStatus: listProps.toggleTodoStatus,
+                deleteTodo: listProps.deleteTodo
+            } = this.props)
+
         const { todos } = this.props
         return (
             <div className={styles.root}>
@@ -38,12 +51,15 @@ export class TodosAll extends Component {
                     subtitle={format(new Date(), 'Pp', { locale: ru })}
                     action={<Progress todos={this.props.todos} />} />
                 <Toolbar
-                    todos={this.props.todos}
-                    show={this.state.show}
+                    todos={todos}
+                    {...toolbarProps}
                     scrolled={this.state.scrolled}
                     onStatusFilterChange={this.handleStatusFilterChange}
                 />
-                <TodoList todos={todos} onScroll={this.handleScroll} />
+                <TodoList
+                    todos={todos}
+                    onScroll={this.handleScroll}
+                    {...listProps} />
 
             </div>
 

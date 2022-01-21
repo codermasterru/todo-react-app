@@ -6,26 +6,30 @@ import { connect } from 'react-redux';
 
 import { toggleView } from 'store/actions/root';
 import { rootSelector } from 'store/selectors';
+import { todosSummarySelector } from 'store/selectors';
 import TodosNew from './New';
 
-const mapStateToProps = state => rootSelector(state);
+const mapStateToProps = state => ({
+    ...rootSelector(state),
+    ...todosSummarySelector(state)
+})
 
 const mapDispathToProps = dispath => ({
     changeView: () => dispath(toggleView())
 })
 
 export class Todos extends Component {
-
     render() {
+        const { viewAll, pendingTodos, changeView } = this.props
         return (
             <ContentLayout
-                activeRight={!this.props.viewAll}
+                activeRight={!viewAll}
                 left={<TodosAll />}
                 right={<TodosNew />}
                 overlay={
                     <Overlay
-                        left={<Summary todos={[]} toggleView={this.props.changeView} />}
-                        right={<TodoAdd toggleView={this.props.changeView} />} />
+                        left={<Summary todos={pendingTodos} toggleView={changeView} />}
+                        right={<TodoAdd toggleView={changeView} />} />
                 }
             />
         )

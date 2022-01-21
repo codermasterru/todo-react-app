@@ -7,7 +7,6 @@ const Summary = ({ todos, toggleView }) => {
     const countByCategory = categoryId => {
         return todos.filter(todo => todo.category === categoryId).length
     }
-
     return (
         <>
             <h1>Мои дела</h1>

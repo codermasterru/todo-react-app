@@ -1,3 +1,5 @@
+import * as Actions from 'store/actions/todo/action-types'
+
 
 const initialState = {
     todos: [
@@ -7,46 +9,36 @@ const initialState = {
             category: '1',
             description: 'Доделать проект',
             location: 'Офис',
-            date: new Date(),
-            done: false
-        },
-        {
-            id: 2,
-            icon: 'walk',
-            category: '2',
-            description: 'Сходить к друзьям',
-            location: 'метро "Пушкинская',
-            date: new Date(),
-            done: false
-        },
-        {
-            id: 3,
-            icon: 'shop',
-            category: '3',
-            description: "Сходить за покупками",
-            location: 'Гипермаркет Глобус',
-            date: new Date(),
-            done: false
-        },
-        {
-            id: 4,
-            icon: 'calculator',
-            category: '1',
-            description: "Посчитать смету",
-            location: 'Офис',
-            date: new Date(),
-            done: false
-        },
-        {
-            id: 5,
-            icon: 'envelope',
-            category: '2',
-            description: "Отправить письмо бабушке",
-            location: 'Дом',
-            date: new Date(),
+            date: new Date(2025, 10, 5),
             done: false
         }
-    ]
+    ],
+    filters: {
+        date: {
+            key: 'Сегодня',
+            value: new Date()
+        },
+        status: {
+            key: 'Все',
+            value: null
+        }
+    }
 }
 
-export default (state = initialState) => state
+const reducer = {
+    [Actions.DELETE_TODO]: (state, payload) => ({
+        ...state,
+        todos: state.todos.filter(todo => todo.id !== payload.id)
+    }),
+
+    [Actions.TOGGLE_TODO_STATUS]: (state, payload) => ({
+        ...state,
+        todos: state.todos.map(todo =>
+            todo.id === payload.id ? { ...todo, done: !todo.done } : todo
+        )
+    }),
+}
+
+
+export default (state = initialState, { type, payload }) =>
+    reducer[type] ? reducer[type](state, payload) : state
