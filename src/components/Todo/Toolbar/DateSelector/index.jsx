@@ -12,12 +12,13 @@ import {
 } from 'date-fns'
 
 import styles from './index.module.scss'
+import { ru } from 'date-fns/locale'
 
 const formatDate = date => {
     if (isToday(date)) return 'Today'
     if (isTomorrow(date)) return 'Tomorrow'
     if (isThisWeek(date)) return format(date, 'dddd')
-    return format(date, `MMM Do${!isThisYear(date) ? ', YYYY' : ''}`)
+    return format(date, `Pp${!isThisYear(date) ? ', yyyy' : ''}`,{locale: ru})
 }
 
 const groupByDate = (list, filterBy) =>

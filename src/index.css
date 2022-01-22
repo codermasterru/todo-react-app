@@ -28,6 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f6f5f7;
 }
 
 .bp3-control input:focus ~ .bp3-control-indicator,
