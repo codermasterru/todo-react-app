@@ -1,47 +1,45 @@
-import { AnchorButton, Button, ButtonGroup, Position } from '@blueprintjs/core';
-import { Popover2 } from '@blueprintjs/popover2';
-import StatusSelector from './StatusSellector';
+import PropTypes from 'prop-types'
+import { Button, ButtonGroup, Position } from '@blueprintjs/core';
+import { Tooltip2 } from '@blueprintjs/popover2';
+import StatusFilter from './StatusFilter';
 
 import styles from './index.module.scss';
-import DateSelector from './DateSelector';
 
-const Toolbar = (props) => {
+const Toolbar = props => {
+    const { statusFilter, completeAll, deleteAll, onStatusFilterChange } = props
     return (
         <div className={`${styles.toolbar} 
         ${props.scrolled ? styles.scrolled : ''}`}>
             <div className={styles.filter}>
-                <ButtonGroup minimal>
-                    <Popover2
-                        content={<DateSelector todos={props.todos} />}
-                        position={Position.BOTTOM_LEFT}
-                        minimal>
-                        <AnchorButton rightIcon='caret-down' icon='calendar'>
-                            Сегодня
-                        </AnchorButton>
-                    </Popover2>
-                    <Popover2
-                        content={
-                            <StatusSelector onselect={props.onStatusFilterChange} />
-                        }
-                        position={Position.BOTTOM_LEFT}
-                        minimal>
-                        <AnchorButton rightIcon='caret-down' icon='eye-open'>
-                            {props.show}
-                        </AnchorButton>
-                    </Popover2>
-                </ButtonGroup>
-
+                <StatusFilter
+                    value={statusFilter}
+                    onSelect={onStatusFilterChange} />
             </div>
             <div className={styles.actions}>
+
                 <ButtonGroup minimal>
-                    <Button icon='tick' />
-                    <Button icon='trash' />
+                    <Tooltip2
+                        content={'Завершить все'}
+                        position={Position.BOTTOM}
+                        onClick={completeAll}>
+                        <Button icon={'tick'} />
+                    </Tooltip2>
+                    <Tooltip2
+                        content={'Удалить все'}
+                        position={Position.BOTTOM}
+                        onClick={deleteAll}>
+                        <Button icon={'trash'} />
+                    </Tooltip2>
                 </ButtonGroup>
             </div>
         </div>
     )
 }
 
+
+Toolbar.propTypes = {
+    statusFilter: PropTypes.string.isRequired
+}
 
 
 export default Toolbar;

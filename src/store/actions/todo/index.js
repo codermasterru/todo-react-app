@@ -19,24 +19,26 @@ export const toggleTodoStatus = id => ({
     payload: { id }
 })
 
-export const completeAll = payload => ({
-    type: Types.COMPLETE_ALL_TODOS,
-    payload
+export const completeAll = () => ({
+    type: Types.COMPLETE_ALL_TODOS
 })
 
-export const deleteteAll = payload => ({
+export const deleteAll = payload => ({
     type: Types.DELETE_ALL_TODOS,
     payload
 })
 
-export const updateStatusFilter = payload => ({
+export const updateStatusFilter = status => ({
     type: Types.UPDATE_TODO_STATUS_FILTER,
-    payload
+    payload: { status }
 })
 
-export const updateDateFilter = payload => ({
+export const updateDateFilter = ({ key, value }) => ({
     type: Types.UPDATE_TODO_DATE_FILTER,
-    payload
+    payload: {
+        key,
+        value
+    }
 })
 
 export const updateField = ({ field, value }) => ({

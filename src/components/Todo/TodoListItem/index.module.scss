@@ -1,12 +1,12 @@
 @import "styles/colors";
 
 .root {
-    border-bottom: 1px solid lightgray;
+    // border-bottom: 1px solid lightgray;
     padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     &:hover {
-        background-color: lighten($outline-color, 3);
+        background-color: lighten($primary-color, 34);
         .date {
             display: none;
         }

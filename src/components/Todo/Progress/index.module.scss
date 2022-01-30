@@ -1,17 +1,15 @@
 @import "styles/colors";
 
 .progress {
-    width: 105px;
     display: flex;
-    flex-flow: column;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem;
     z-index: 1;
     span {
-        color: $outline-color;
-        font-size: 0.75rem;
+        color: #000;
+        font-size: 0.8rem;
         text-align: center;
+        padding: 0 10px;
     }
     svg {
         :global(.bp3-spinner-track) {

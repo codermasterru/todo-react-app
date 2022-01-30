@@ -10,13 +10,10 @@ const Progress = ({ todos }) => {
 
     return (
         <div className={styles.progress}>
-            <span>Завершено</span>
-            <div className={styles.spinnerContainer}>
-                <Spinner
-                    size={65}
-                    value={percentage} />
-                <span className={styles.value}>{percentage * 100}%</span>
-            </div>
+            <Spinner
+                size={25}
+                value={percentage} />
+            <span >{percentage * 100}% завершено</span>
         </div>)
 }
 

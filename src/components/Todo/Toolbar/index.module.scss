@@ -23,7 +23,7 @@
 }
 
 .filter {
-    flex: auto;
+    flex: 0 1;
     display: flex;
     align-items: center;
 }
@@ -32,7 +32,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    > * {
-        margin: 0 3px;
+    button {
+        border-radius: 50%;
     }
 }

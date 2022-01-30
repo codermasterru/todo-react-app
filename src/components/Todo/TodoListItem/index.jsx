@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { Button } from '@blueprintjs/core';
+import { Button, ButtonGroup } from '@blueprintjs/core';
 import Avatar from 'components/UI/Avatar'
 import styles from './index.module.scss';
 
@@ -15,7 +15,7 @@ const TodoListItem = ({ todo, onToggle, onDelete }) => {
 
     return (
         <div className={`${styles.root} ${todo.done ? styles.done : ''}`}>
-            <Avatar icon={todo.icon} disabled={todo.done} />
+            <Avatar icon={todo.icon} disabled={!todo.done} />
             <div className={styles.content}>
                 <div className={styles.title}>{todo.description}</div>
                 <div className={styles.subtitle}>{todo.location}</div>
@@ -25,8 +25,24 @@ const TodoListItem = ({ todo, onToggle, onDelete }) => {
                     {format(todo.date, 'PP', { addSuffix: true, locale: ru })}
                 </span>
                 <div className={styles.actions}>
-                    {!todo.done && <Button icon={'tick'} minimal onClick={handleToggle} />}
-                    <Button icon='trash' minimal onClick={handleDelete} />
+                    <ButtonGroup minimal>
+                        {!todo.done && (
+                            <Button
+                                icon={'tick'}
+                                minimal
+                                onClick={handleToggle} />
+                        )}
+                        {!todo.done && (
+                            <Button
+                                icon={'undo'}
+                                minimal
+                                onClick={handleToggle} />
+                        )}
+                        <Button
+                            icon='trash'
+                            minimal
+                            onClick={handleDelete} />
+                    </ButtonGroup>
                 </div>
             </div>
         </div>

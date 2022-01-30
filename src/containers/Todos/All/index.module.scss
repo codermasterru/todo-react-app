@@ -5,3 +5,10 @@
     flex-flow: column;
     height: 100%;
 }
+
+.subtitleWrapper {
+    display: flex;
+    z-index: 1;
+    justify-content: space-evenly;
+    width: 100%;
+}

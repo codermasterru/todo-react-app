@@ -1,10 +1,11 @@
 @import "styles/colors";
 @import "styles/mixins";
+@import "styles/input";
 
 .todoIcon {
     width: 100%;
     text-align: center;
-    padding: 1rem 0 0.5rem;
+    padding: 0.1rem 0 0.5rem;
     display: flex;
     justify-content: center;
     span {
@@ -23,8 +24,8 @@
     }
 }
 .form {
-    padding: 0.5rem 1.5rem 1rem;
-    > div {
+    padding: 0.5rem 3.5rem 1rem;
+    > div:not(:first-child) {
         margin: 8px 0;
         width: 100%;
     }
@@ -32,7 +33,7 @@
 
 .date {
     display: flex;
-    > input {
+    > div:first-of-type {
         flex: 1;
     }
     label {
@@ -41,20 +42,7 @@
     :global(.bp3-popover2-target) {
         width: 100%;
         input {
-            width: 100%;
-            border-radius: 5px;
-            border: none;
-            background: $outline-color;
-            height: auto;
-            padding: 5px 5px 5px 12px;
-            vertical-align: middle;
-            line-height: 30px;
-            font-size: 0.9rem;
-            box-shadow: none;
-            &:focus {
-                box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
-                    inset 0 1px 1px rgba(16, 22, 26, 0.2);
-            }
+            @extend .baseInput;
         }
     }
     :global(.bp3-popover2-target:hover) {
@@ -69,6 +57,7 @@
     align-items: center;
     padding-left: 15px;
     padding-right: 5px;
+    
     :global(.bp3-control.bp3-switch input:not(:checked) ~ .bp3-control-indicator) {
         background: $outline-color;
     }
@@ -78,7 +67,7 @@
     }
 
     :global(.bp3-control.bp3-switch input:checked ~ .bp3-control-indicator) {
-        background: $primary-color-dark1;
+        background: $primary-color;
     }
 }
 
@@ -94,13 +83,15 @@
 @include categories-colors;
 
 .saveButton:not([disabled]) {
-    color: $primary-color-dark1 !important;
+    color: #fff !important;
+    border-radius: 4px;
+    background-color: $primary-color !important;
     font-weight: 500;
     &:hover {
-        background: rgba($primary-color-dark1, 0.1) !important;
+        background: rgba($primary-color, 0.9) !important;
     }
     &:active {
-        background: rgba($primary-color-dark1, 0.15) !important;
+        background: rgba($primary-color, 0.95) !important;
     }
 }
 
@@ -111,7 +102,7 @@
 }
 
 .badge {
-    background: #b5b5b5;;
+    background: #5c7080;
     color: #fff;
     position: relative;
     border-radius: inherit;
